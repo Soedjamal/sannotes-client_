@@ -1,0 +1,88 @@
+.form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.title {
+  font-size: 1.8rem;
+  margin-bottom: 50px;
+}
+
+.auth-input {
+  margin-bottom: 20px;
+  padding: 0.3rem;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.auth-input-password {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  height: 100%;
+  width: 90%;
+}
+
+.input-password {
+  border-radius: 5px;
+  padding: 0.3rem;
+  margin-bottom: 20px;
+  border: 2px solid black;
+  width: 100%;
+}
+
+.auth-btn {
+  margin-right: 3px;
+  padding: 0.4rem;
+  font-weight: 700;
+  background-color: rgb(183, 111, 255);
+  border: 2px solid black;
+  border-radius: 5px;
+  box-shadow: 3px 3px black;
+}
+.auth-btn:active {
+  box-shadow: 0 0 black;
+  transform: translate(3px, 3px);
+}
+
+.label {
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+.alert {
+  position: relative;
+  top: -20px;
+  font-size: 0.8rem;
+  color: red;
+}
+
+.alert-res {
+  margin-top: 10px;
+  color: red;
+  font-size: 0.8rem;
+  padding: 8px 10px;
+  border-radius: 4px;
+  background-color: rgb(255, 0, 0, 0.1);
+}
+
+.not-register {
+  margin-top: 20px;
+  font-size: 0.8rem;
+}
+.not-login {
+  margin-top: 20px;
+  font-size: 0.8rem;
+}
+.not {
+  text-decoration: none;
+  color: rgb(137, 47, 255);
+}
