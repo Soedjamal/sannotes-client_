@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../lib/axios";
-import { resolvePath, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const useRegister = () => {
   const [message, setMessage] = useState([]);
@@ -19,7 +19,7 @@ export const useRegister = () => {
       console.log(response.data.message.success);
     } catch (err) {
       if (err.response) {
-        setMessage(err.response.data.message || "Terjadi kesalahan");
+        setMessage(err.response.data.message);
       } else {
         setMessage("Terjadi kesalahan pada server");
       }
@@ -41,7 +41,7 @@ export const useRegister = () => {
 };
 
 export const useLogin = () => {
-  const [message, setMessage] = useState({});
+  const [message, setMessage] = useState([]);
   const [token, setToken] = useState("");
   const navigate = useNavigate();
 

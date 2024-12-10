@@ -5,11 +5,17 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTodo } from "../../hooks/useTodo";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowDown,
+  faArrowUp,
+  faBars,
+  faSort,
+} from "@fortawesome/free-solid-svg-icons";
 
 const TodoWrapper = () => {
   const [isEdit, setIsEdit] = useState(null);
   const [sortType, setSortType] = useState("latest");
+  const [sortMenu, setSortMenu] = useState(false);
 
   const { fetchTodos, deleteTodo } = useTodo();
   const { data: todos } = useQuery({
@@ -45,17 +51,22 @@ const TodoWrapper = () => {
     <div className="TodoWrapper">
       <div className="todo-title-container">
         <h3 className="todos-title">TodoList</h3>
-        <div className="sort">
-          <FontAwesomeIcon
-            icon={faArrowUp}
-            className="sort-ico"
-            onClick={() => setSortType("latest")}
-          />
-          <FontAwesomeIcon
-            icon={faArrowDown}
-            className="sort-ico"
-            onClick={() => setSortType("oldest")}
-          />
+        <FontAwesomeIcon
+          icon={faSort}
+          className="sort-menu"
+          onClick={() => setSortMenu(!sortMenu)}
+        />
+
+        <div className={sortMenu ? "sort sort-menu-on" : "sort sort-menu-off"}>
+          <div className="sort-action" onClick={() => setSortType("latest")}>
+            <FontAwesomeIcon icon={faArrowUp} className="sort-ico" />
+            <h5>Urutkan terbaru</h5>
+          </div>
+
+          <div className="sort-action" onClick={() => setSortType("oldest")}>
+            <FontAwesomeIcon icon={faArrowDown} className="sort-ico" />
+            <h5>Urutkan terlama</h5>
+          </div>
         </div>
       </div>
 
@@ -75,7 +86,7 @@ const TodoWrapper = () => {
               handleDelete={handleDelete}
               handleEdit={(id) => setIsEdit(id)}
             />
-          ),
+          )
         )}
       </div>
     </div>

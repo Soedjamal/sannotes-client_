@@ -12,10 +12,10 @@ import "./navbar.css";
 import { Link } from "react-router-dom";
 import { useLogout } from "../../hooks/useAuth";
 import { useAuthorize } from "../../hooks/useAuthorize";
+import { useAuth } from "../../context/AuthContext";
 
 const Menu = () => {
-  const { token, expire } = useAuthorize();
-  const isLoggedIn = token && expire * 1000 > new Date().getTime(); // Token valid jika tidak expired
+  const { isAuthenticated } = useAuth();
 
   const { logout } = useLogout();
 
@@ -30,7 +30,7 @@ const Menu = () => {
         </li>
         <li className="menu-list">
           <FontAwesomeIcon icon={faUser} />
-          <Link className="menu-link" to={isLoggedIn ? `/profile` : `/login`}>
+          <Link className="menu-link" to="/profile">
             Profile
           </Link>
         </li>
@@ -42,12 +42,14 @@ const Menu = () => {
         </li>
       </ul>
 
-      <div className="logout">
-        <FontAwesomeIcon icon={faRightFromBracket} />
-        <Link onClick={logout} className="logout-link">
-          Logout
-        </Link>
-      </div>
+      {isAuthenticated ? (
+        <div className="logout">
+          <FontAwesomeIcon icon={faRightFromBracket} />
+          <Link onClick={logout} className="logout-link">
+            Logout
+          </Link>
+        </div>
+      ) : null}
     </nav>
   );
 };

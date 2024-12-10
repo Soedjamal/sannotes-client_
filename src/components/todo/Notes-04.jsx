@@ -82,11 +82,13 @@ const Todo = ({ todo, handleEdit, handleDelete }) => {
             todo={todo}
           />
           <h3 className="menu-action-title">Hapus Tugas.</h3>
-          <FontAwesomeIcon
+          <h5
             className="delete-icon"
             icon={faTrash}
             onClick={() => handleDelete(todo.id)}
-          />
+          >
+            Delete
+          </h5>
 
           <p className="createdAt">
             <FontAwesomeIcon icon={faClock} className="time" />

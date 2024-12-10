@@ -2,21 +2,22 @@ import "./home.css";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/header/Navbar";
 import { useEffect, useState } from "react";
-import { useTheUser } from "../hooks/useTheUser";
-import { useQuery } from "@tanstack/react-query";
-import { useAuthorize } from "../hooks/useAuthorize";
+import { useAuth } from "../context/AuthContext";
 
 const Home = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  const { isAuthenticated } = useAuthorize();
+  const { isAuthenticated, decodedUser } = useAuth();
   const navigate = useNavigate();
+
+  const handleNavigation = (isLoginPath, notLoginPath) => {
+    isAuthenticated ? navigate(isLoginPath) : navigate(notLoginPath);
+  };
 
   return (
     <>
       <Navbar />
       <div className="home">
         <div className="main-home-title">
-          <h1>Selamat datang {"gg"}</h1>
+          <h1>Selamat datang {decodedUser?.username}</h1>
         </div>
         <div className="home-title">
           <h1>Make your plan</h1>
@@ -34,13 +35,13 @@ const Home = () => {
             onClick={() => handleNavigation("/todos", "/login")}
             className="login-btn"
           >
-            {isLogin ? "Lihat Tugas" : "Mulai Sekarang"}
+            {isAuthenticated ? "Lihat Tugas" : "Mulai Sekarang"}
           </button>
           <button
             onClick={() => handleNavigation("/profile", "/register")}
             className="register-btn"
           >
-            {isLogin ? "Lihat Profil" : "Daftar Sekarang"}
+            {isAuthenticated ? "Lihat Profil" : "Daftar Sekarang"}
           </button>
         </div>
       </div>

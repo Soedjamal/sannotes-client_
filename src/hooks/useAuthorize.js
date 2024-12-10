@@ -1,15 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../lib/axios";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext";
 
 export const useAuthorize = () => {
-  const [token, setToken] = useState("");
-  const [decodedId, setDecodedId] = useState("");
-  const [decodedUsername, setDecodedUsername] = useState("");
-  const [expire, setExpire] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const {
+    setIsAuthenticated,
+    isAuthenticated,
+    setDecodedUser,
+    setExpire,
+    expire,
+    setToken,
+    token,
+  } = useAuth();
 
   const navigate = useNavigate();
 
@@ -18,17 +23,18 @@ export const useAuthorize = () => {
       const response = await axiosInstance.get("/token");
       const decoded = jwtDecode(response.data.accessToken);
 
-      setDecodedId(decoded.id);
-      setDecodedUsername(decoded.username);
+      setDecodedUser(decoded);
       setExpire(decoded.exp);
-      setToken(response.data.accessToken);
-
       setIsAuthenticated(true);
     } catch (error) {
       setIsAuthenticated(false);
       navigate("/login");
     }
   };
+
+  useEffect(() => {
+    console.log(isAuthenticated);
+  }, [isAuthenticated]);
 
   const axiosJWT = axios.create({
     baseURL: "http://localhost:2007",
@@ -45,8 +51,7 @@ export const useAuthorize = () => {
           setToken(response.data.accessToken);
 
           const decoded = jwtDecode(response.data.accessToken);
-          setDecodedId(decoded.id);
-          setDecodedUsername(decoded.username);
+          setDecodedUser(decoded);
           setExpire(decoded.exp);
           setIsAuthenticated(true);
 
@@ -62,15 +67,10 @@ export const useAuthorize = () => {
 
       return config;
     },
-    (error) => Promise.reject(error),
+    (error) => Promise.reject(error)
   );
 
   return {
-    token,
-    expire,
-    decodedId,
-    decodedUsername,
-    isAuthenticated,
     axiosJWT,
     refreshToken,
   };
