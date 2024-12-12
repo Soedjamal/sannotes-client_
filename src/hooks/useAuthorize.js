@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../lib/axios";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
-import { useAuth } from "../context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 export const useAuthorize = () => {
   const {
@@ -14,7 +14,7 @@ export const useAuthorize = () => {
     expire,
     setToken,
     token,
-  } = useAuth();
+  } = useAuthContext();
 
   const navigate = useNavigate();
 
@@ -67,7 +67,7 @@ export const useAuthorize = () => {
 
       return config;
     },
-    (error) => Promise.reject(error)
+    (error) => Promise.reject(error),
   );
 
   return {

@@ -12,10 +12,10 @@ import "./navbar.css";
 import { Link } from "react-router-dom";
 import { useLogout } from "../../hooks/useAuth";
 import { useAuthorize } from "../../hooks/useAuthorize";
-import { useAuth } from "../../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 const Menu = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuthContext();
 
   const { logout } = useLogout();
 

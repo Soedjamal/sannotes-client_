@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [expire, setExpire] = useState("");
   const [decodedUser, setDecodedUser] = useState([]);
   const [token, setToken] = useState("");
+  const [user, setUser] = useState({});
 
   return (
     <AuthContext.Provider
@@ -19,6 +20,8 @@ export const AuthProvider = ({ children }) => {
         setDecodedUser,
         expire,
         setExpire,
+        user,
+        setUser,
       }}
     >
       {children}
@@ -26,4 +29,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuthContext = () => useContext(AuthContext);

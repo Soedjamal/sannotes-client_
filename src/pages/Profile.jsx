@@ -4,11 +4,13 @@ import Navbar from "../components/header/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useTheUser } from "../hooks/useTheUser";
 import { useQuery } from "@tanstack/react-query";
+import { useAuthContext } from "../context/AuthContext";
 
 const Profile = () => {
   const { getUser } = useTheUser();
-  const [isLogin, setIsLogin] = useState(false);
+  // const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated, setIsAuthenticated } = useAuthContext();
 
   const { data: user } = useQuery({
     queryKey: ["users"],
@@ -17,12 +19,12 @@ const Profile = () => {
 
   useEffect(() => {
     if (user) {
-      setIsLogin(!isLogin);
+      setIsAuthenticated(!isAuthenticated);
     }
   }, []);
 
   const handleNavigation = (login, notLogin) => {
-    isLogin ? navigate(login) : navigate(notLogin);
+    isAuthenticated ? navigate(login) : navigate(notLogin);
   };
 
   return (

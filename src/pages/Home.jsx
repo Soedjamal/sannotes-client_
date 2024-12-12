@@ -2,10 +2,10 @@ import "./home.css";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/header/Navbar";
 import { useEffect, useState } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 const Home = () => {
-  const { isAuthenticated, decodedUser } = useAuth();
+  const { isAuthenticated, user } = useAuthContext();
   const navigate = useNavigate();
 
   const handleNavigation = (isLoginPath, notLoginPath) => {
@@ -17,7 +17,7 @@ const Home = () => {
       <Navbar />
       <div className="home">
         <div className="main-home-title">
-          <h1>Selamat datang {decodedUser?.username}</h1>
+          <h1>Selamat datang {user?.username}</h1>
         </div>
         <div className="home-title">
           <h1>Make your plan</h1>

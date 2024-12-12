@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useAuthorize } from "./useAuthorize";
+import { useAuthContext } from "../context/AuthContext";
 
 export const useTheUser = () => {
   const { axiosJWT } = useAuthorize();
-  const [user, setUser] = useState({});
+  const { user, setUser } = useAuthContext();
 
   const getUser = async () => {
     try {

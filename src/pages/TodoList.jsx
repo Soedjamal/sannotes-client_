@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useAuthorize } from "../hooks/useAuthorize";
-import TodoWrapper from "../components/todo/NotesWrapper-04";
+import TodoWrapper from "../components/todo/TodoWrapper";
 import axiosInstance from "../lib/axios";
 import { jwtDecode } from "jwt-decode";
-import { useAuth } from "../context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 const TodoList = () => {
   const { refreshToken } = useAuthorize();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuthContext();
 
   useEffect(() => {
     refreshToken();

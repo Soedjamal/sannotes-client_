@@ -43,5 +43,5 @@ root.render(
         <RouterProvider router={route} />
       </AuthProvider>
     </QueryClientProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
