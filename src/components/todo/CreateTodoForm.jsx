@@ -35,7 +35,7 @@ const TodoForm = () => {
         placeholder="Add your task"
       />
       <button className="todo-btn" type="submit">
-        {isPending ? "Add" : "Add"}
+        {isPending ? "Add.." : "Add"}
       </button>
     </form>
   );

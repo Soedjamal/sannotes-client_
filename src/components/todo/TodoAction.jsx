@@ -5,6 +5,8 @@ import {
   faSliders,
   faX,
   faC,
+  faCheck,
+  faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -13,14 +15,15 @@ import { id } from "date-fns/locale";
 import { useState } from "react";
 import { useTodo } from "../../hooks/useTodo";
 import EditForm from "./EditTodoForm";
+import DescriptionForm from "./CreateTodoDescription";
 
 const Todo = ({ todo, handleEdit, handleDelete }) => {
-  const { completeTask } = useTodo();
+  const { completeTask, createTaskDesc } = useTodo();
   const [time, setTime] = useState(false);
   const [menu, setMenu] = useState(false);
   const queryQlient = useQueryClient();
 
-  const { mutate } = useMutation({
+  const completeMutation = useMutation({
     mutationFn: completeTask,
     onSuccess: () => {
       queryQlient.invalidateQueries(["tasks"]);
@@ -28,15 +31,13 @@ const Todo = ({ todo, handleEdit, handleDelete }) => {
   });
 
   const handleComplete = () => {
-    mutate({
-      id: todo.id,
-      completed: !todo.completed,
-    });
-    console.log({
+    completeMutation.mutate({
       id: todo.id,
       completed: !todo.completed,
     });
   };
+
+  const maxLength = 10;
 
   const createdAt = todo.createdAt;
 
@@ -45,10 +46,6 @@ const Todo = ({ todo, handleEdit, handleDelete }) => {
     locale: id,
   });
   // }
-
-  const handleMenu = () => {
-    menu ? setMenu(false) : setMenu(true);
-  };
 
   return (
     <div className="Todo">
@@ -83,12 +80,7 @@ const Todo = ({ todo, handleEdit, handleDelete }) => {
             todo={todo}
           />
 
-          <div className="todo-task-description">
-            <textarea
-              className="txarea-input"
-              placeholder="Tambahkan deskripsi tugas mu"
-            ></textarea>
-          </div>
+          <DescriptionForm todo={todo} />
 
           <h3 className="menu-action-title">Hapus Tugas.</h3>
           <h5
@@ -99,10 +91,16 @@ const Todo = ({ todo, handleEdit, handleDelete }) => {
             Delete
           </h5>
 
-          <p className="createdAt">
-            <FontAwesomeIcon icon={faClock} className="time" />
-            {formattedTime}
-          </p>
+          <div className="task-info">
+            <p className="createdAt">
+              <FontAwesomeIcon icon={faClock} className="time" />
+              {formattedTime}
+            </p>
+            <p className="createdAt">
+              <FontAwesomeIcon icon={faCheckCircle} className="time" />
+              {todo.completed ? "Completed" : "Not Completed"}
+            </p>
+          </div>
         </div>
 
         <FontAwesomeIcon

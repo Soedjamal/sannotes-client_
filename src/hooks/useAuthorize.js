@@ -32,12 +32,8 @@ export const useAuthorize = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(isAuthenticated);
-  }, [isAuthenticated]);
-
   const axiosJWT = axios.create({
-    baseURL: "http://localhost:2007",
+    baseURL: "http://localhost:5000",
     withCredentials: true,
   });
 
@@ -67,7 +63,7 @@ export const useAuthorize = () => {
 
       return config;
     },
-    (error) => Promise.reject(error),
+    (error) => Promise.reject(error)
   );
 
   return {

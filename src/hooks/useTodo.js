@@ -29,5 +29,19 @@ export const useTodo = () => {
     return response.data;
   };
 
-  return { fetchTodos, createTodo, deleteTodo, editTask, completeTask };
+  const createTaskDesc = async ({ id, taskDescription }) => {
+    const response = await axiosJWT.patch(`/todos/create/${id}`, {
+      taskDescription,
+    });
+    return response.data;
+  };
+
+  return {
+    fetchTodos,
+    createTodo,
+    deleteTodo,
+    editTask,
+    completeTask,
+    createTaskDesc,
+  };
 };

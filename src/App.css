@@ -23,21 +23,20 @@
 }
 
 .async-btn {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background-color: black;
+  opacity: 0.5;
 }
 .async-on {
   z-index: 100;
-  opacity: 0.3;
   transition: all 0.3s ease;
 }
 .async-off {
-  opacity: 0;
-  z-index: -1000;
+  display: none;
   transition: all 0.3s ease;
 }
 
@@ -150,6 +149,28 @@
   box-shadow: 0 0 black;
 }
 
+.todo-task-description {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  width: 330px;
+}
+
+.task-desc-btn {
+  border-radius: 5px;
+  padding: 5px;
+  height: 35px;
+  width: 100%;
+  border: 2px solid black;
+  background-color: rgb(255, 165, 0);
+  font-weight: 700;
+  box-shadow: 3px 3px black;
+}
+.task-desc-btn:active {
+  box-shadow: 0 0 black;
+  transform: translate(3px, 3px);
+}
+
 .Todo {
   display: flex;
   align-items: center;
@@ -178,7 +199,6 @@
 }
 
 .createdAt {
-  width: 100%;
   border-top: none;
   bottom: 3px;
   z-index: -100;
@@ -195,6 +215,12 @@
   position: relative;
   left: 0;
   margin-right: 10px;
+}
+.task-info {
+  display: flex;
+  width: 330px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .todo-action {
@@ -263,7 +289,7 @@
   position: absolute;
   top: 80px;
   right: -1000px;
-  rotate: 180deg;
+
   transition: all 0.5s ease-in;
 }
 
@@ -353,5 +379,55 @@
     font-size: 0.9rem;
     font-weight: 700;
     /* background-color: rgb(193, 139, 255); */
+  }
+
+  .menu-action {
+    width: 100%;
+    position: fixed;
+    border: 2px solid black;
+    border-radius: 10px 10px 0 0;
+    z-index: 199;
+    height: 500px;
+    background-color: #e7e7e7;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .on {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    transition: all 0.5s ease;
+  }
+  .off {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    transition: all 0.8s ease;
+  }
+
+  .menu-action-title {
+    margin: 0;
+    color: black;
+  }
+
+  .menu-action-selection {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .txarea-input {
+    min-width: 330px;
+    max-width: 330px;
+    min-height: 140px;
+    max-height: 180px;
+    padding: 5px;
+    outline: none;
+    border: 2px solid black;
+    border-radius: 5px;
   }
 }
