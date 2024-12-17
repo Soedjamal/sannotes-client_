@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./auth.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
@@ -75,8 +75,12 @@ const Login = () => {
             messages && <p className="alert">{messages.errorPassword}</p>
           )}
 
+          <Link to="/reset-password" className="forgot-password-link">
+            Lupa password?
+          </Link>
+
           <button className="auth-btn" type="submit">
-            Login
+            Masuk
           </button>
         </div>
         <h4 className="not-login">

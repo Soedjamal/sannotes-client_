@@ -5,27 +5,30 @@ import Navbar from "../header/Navbar";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const PasswordReset = () => {
+const OtpVerification = () => {
   const [showpass, setShowPass] = useState(false);
   const navigate = useNavigate();
 
   const { register, formState, handleSubmit } = useForm({});
 
   const onSubmit = handleSubmit((values) => {
-    PasswordResetPayload(values.email.trim(), values.password);
+    OtpVerificationPayload(values.email.trim(), values.password);
   });
 
   return (
     <>
       <Navbar />
       <form className="form" onSubmit={onSubmit}>
-        <h2 className="title">Reset Password</h2>
+        <h2 className="title">Kirim OTP</h2>
         <div className="form-container">
           <label className="label" htmlFor="email">
-            Masukkan Email Verifikasi
+            Masukkan Kode
           </label>
           <input
             type="text"
+            inputMode="numeric"
+            placeholder="S-"
+            value="S-"
             id="email"
             {...register("email")}
             className="auth-input"
@@ -50,16 +53,9 @@ const PasswordReset = () => {
             Kirim Kode
           </button>
         </div>
-
-        <h4 className="not-login">
-          Belum punya akun?{" "}
-          <Link className="not" to="/register">
-            Daftar
-          </Link>
-        </h4>
       </form>
     </>
   );
 };
 
-export default PasswordReset;
+export default OtpVerification;

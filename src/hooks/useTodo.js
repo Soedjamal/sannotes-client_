@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { useAuthorize } from "../hooks/useAuthorize";
 
 export const useTodo = () => {
   const { axiosJWT } = useAuthorize();
+  const [message, setMessage] = useState("");
+  const [msgTimeout, setMsgTimeOut] = useState(false);
 
   const fetchTodos = async () => {
     const response = await axiosJWT.get("/todos");
@@ -30,10 +33,23 @@ export const useTodo = () => {
   };
 
   const createTaskDesc = async ({ id, taskDescription }) => {
-    const response = await axiosJWT.patch(`/todos/create/${id}`, {
-      taskDescription,
-    });
-    return response.data;
+    try {
+      const response = await axiosJWT.patch(`/todos/create/${id}`, {
+        taskDescription,
+      });
+
+      setMessage(response.data.message);
+      console.log(response.data.message);
+      setMsgTimeOut(true);
+
+      setTimeout(() => {
+        setMsgTimeOut(false);
+      }, 3000);
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return {
@@ -43,5 +59,7 @@ export const useTodo = () => {
     editTask,
     completeTask,
     createTaskDesc,
+    message,
+    msgTimeout,
   };
 };

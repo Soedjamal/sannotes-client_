@@ -170,6 +170,30 @@
   box-shadow: 0 0 black;
   transform: translate(3px, 3px);
 }
+.desc-message-on {
+  font-size: 0.8rem;
+  color: green;
+  padding: 3px;
+  border-radius: 3px;
+  border: 2px solid green;
+  background-color: #00ff51a4;
+
+  position: absolute;
+  bottom: 50px;
+  transition: all 0.8s ease;
+}
+.desc-message-off {
+  font-size: 0.8rem;
+  color: green;
+  padding: 3px;
+  border-radius: 3px;
+  border: 2px solid green;
+  background-color: #00ff51a4;
+
+  position: absolute;
+  bottom: -100%;
+  transition: all 0.8s ease-in;
+}
 
 .Todo {
   display: flex;
@@ -217,6 +241,8 @@
   margin-right: 10px;
 }
 .task-info {
+  position: absolute;
+  bottom: 10px;
   display: flex;
   width: 330px;
   justify-content: space-between;
@@ -250,14 +276,14 @@
   color: rgb(0, 0, 0);
 }
 
-.close-menu-btn {
+.close-menu-bar {
   position: absolute;
-  right: 20px;
-  border: 2px solid black;
+  top: 5px;
+  width: 250px;
+  height: 5px;
   border-radius: 5px;
   padding: 6px 8px;
-  box-shadow: 3px 3px black;
-  background-color: white;
+  background-color: rgb(177, 177, 177);
 }
 
 .delete-icon {
@@ -324,6 +350,7 @@
     left: 0;
     padding: 20px;
     display: flex;
+    align-items: center;
     flex-direction: column;
   }
   .on {
@@ -393,6 +420,7 @@
     left: 0;
     padding: 20px;
     display: flex;
+    align-items: center;
     flex-direction: column;
   }
   .on {

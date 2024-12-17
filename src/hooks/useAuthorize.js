@@ -9,12 +9,13 @@ export const useAuthorize = () => {
   const {
     setIsAuthenticated,
     isAuthenticated,
-    setDecodedUser,
     setExpire,
     expire,
     setToken,
     token,
   } = useAuthContext();
+
+  const [userDecode, setDecodedUser] = useState([]);
 
   const navigate = useNavigate();
 
@@ -69,5 +70,7 @@ export const useAuthorize = () => {
   return {
     axiosJWT,
     refreshToken,
+    navigate,
+    userDecode,
   };
 };

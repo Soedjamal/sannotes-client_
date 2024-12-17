@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTodo } from "../../hooks/useTodo";
 
 const DescriptionForm = ({ todo, hasEdit, setMenu }) => {
-  const { createTaskDesc } = useTodo();
+  const { createTaskDesc, message, msgTimeout } = useTodo();
   const [desc, setDesc] = useState(todo.taskDescription);
   const queryQlient = useQueryClient();
 
@@ -17,10 +17,12 @@ const DescriptionForm = ({ todo, hasEdit, setMenu }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    createDescMutation.mutate({
-      id: todo.id,
-      taskDescription: desc,
-    });
+    if (desc) {
+      createDescMutation.mutate({
+        id: todo.id,
+        taskDescription: desc,
+      });
+    }
   };
 
   return (
@@ -35,6 +37,12 @@ const DescriptionForm = ({ todo, hasEdit, setMenu }) => {
       <button type="submit" className="task-desc-btn">
         Tambah Deskripsi
       </button>
+
+      {msgTimeout ? (
+        <p className="desc-message-on">{message}</p>
+      ) : (
+        <p className="desc-message-off">{message}</p>
+      )}
     </form>
   );
 };

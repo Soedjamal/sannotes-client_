@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../lib/axios";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 
 export const useRegister = () => {
   const [message, setMessage] = useState([]);
@@ -67,10 +67,6 @@ export const useLogin = () => {
       }
     }
   }
-
-  useEffect(() => {
-    console.log(token);
-  }, [token]);
 
   const messages = {
     errorUsername: message.username,

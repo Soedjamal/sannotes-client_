@@ -74,6 +74,14 @@
   background-color: rgb(255, 0, 0, 0.1);
 }
 
+.forgot-password-link {
+  text-decoration: none;
+  color: rgb(137, 47, 255);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+
 .not-register {
   margin-top: 20px;
   font-size: 0.8rem;

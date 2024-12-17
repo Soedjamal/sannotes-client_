@@ -15,7 +15,7 @@ import { id } from "date-fns/locale";
 import { useState } from "react";
 import { useTodo } from "../../hooks/useTodo";
 import EditForm from "./EditTodoForm";
-import DescriptionForm from "./CreateTodoDescription";
+import DescriptionForm from "./CreateTodoDescriptionForm";
 
 const Todo = ({ todo, handleEdit, handleDelete }) => {
   const { completeTask, createTaskDesc } = useTodo();
@@ -70,9 +70,10 @@ const Todo = ({ todo, handleEdit, handleDelete }) => {
         onClick={() => setMenu(!menu)}
         className={menu ? "async-btn async-on" : "async-btn async-off"}
       ></div>
+
       <div className={menu ? "menu-action on" : "menu-action off"}>
         <div className="menu-action-selection">
-          <h3 className="menu-action-title">Edit tugas.</h3>
+          <h3 className="menu-action-title">Kelola Tugas.</h3>
           <EditForm
             key={todo.id}
             setMenu={() => setMenu(!menu)}
@@ -82,13 +83,12 @@ const Todo = ({ todo, handleEdit, handleDelete }) => {
 
           <DescriptionForm todo={todo} />
 
-          <h3 className="menu-action-title">Hapus Tugas.</h3>
           <h5
             className="delete-icon"
             icon={faTrash}
             onClick={() => handleDelete(todo.id)}
           >
-            Delete
+            Hapus Tugas
           </h5>
 
           <div className="task-info">
@@ -103,11 +103,7 @@ const Todo = ({ todo, handleEdit, handleDelete }) => {
           </div>
         </div>
 
-        <FontAwesomeIcon
-          className="close-menu-btn"
-          onClick={() => setMenu(false)}
-          icon={faX}
-        />
+        <div className="close-menu-bar" onClick={() => setMenu(false)}></div>
       </div>
     </div>
   );
