@@ -41,15 +41,6 @@ const Menu = () => {
           </Link>
         </li>
       </ul>
-
-      {isAuthenticated ? (
-        <div className="logout">
-          <FontAwesomeIcon icon={faRightFromBracket} />
-          <Link onClick={logout} className="logout-link">
-            Logout
-          </Link>
-        </div>
-      ) : null}
     </nav>
   );
 };

@@ -53,7 +53,7 @@ const TodoWrapper = () => {
         <h3 className="todos-title">TodoList</h3>
         <FontAwesomeIcon
           icon={faSort}
-          className="sort-menu"
+          className="sort-menu-btn"
           onClick={() => setSortMenu(!sortMenu)}
         />
 

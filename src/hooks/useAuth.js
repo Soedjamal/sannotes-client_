@@ -13,10 +13,9 @@ export const useRegister = () => {
       const response = await axiosInstance.post("/register", payload);
       setMessage(response.data.message);
 
-      if (response.data.message.success) {
+      if (response.status === 200) {
         navigate("/login");
       }
-      console.log(response.data.message.success);
     } catch (err) {
       if (err.response) {
         setMessage(err.response.data.message);
@@ -44,20 +43,20 @@ export const useLogin = () => {
   const [message, setMessage] = useState([]);
   const [token, setToken] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   async function loginPayload(username, password) {
     const payload = { username, password };
-    console.log(payload);
 
     try {
+      setLoading(true);
       const response = await axiosInstance.post("/login", payload);
       setMessage(response.data.message);
       setToken(response.data.accessToken);
 
-      console.log(response.data.accessToken);
-
-      if (response.data.message.success) {
+      if (response.status === 200) {
         navigate("/todos");
+        setLoading(false);
       }
     } catch (error) {
       if (error.response) {
@@ -80,6 +79,77 @@ export const useLogin = () => {
   };
 };
 
+export const useResetPassword = () => {
+  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function createOtp(email) {
+    try {
+      setLoading(true);
+      const response = await axiosInstance.post("/forgot-password", { email });
+
+      if (response.status === 200) {
+        navigate("./verify-otp");
+        setLoading(false);
+      }
+
+      setMessage(response.data.message);
+    } catch (error) {
+      setMessage(error.response.data.message);
+    }
+  }
+
+  async function verifyOtp(otpCode, email) {
+    console.log({ otpCode, email });
+    try {
+      const response = await axiosInstance.post("/verify-otp", {
+        otp: otpCode,
+        email: email,
+      });
+
+      if (response.status === 200) {
+        navigate("/change-password");
+      }
+
+      setMessage(response.data.message);
+    } catch (error) {
+      setMessage(error.response.data.message);
+    }
+  }
+
+  async function changePassword(newPassword) {
+    try {
+      const response = await axiosInstance.patch(
+        "/reset-password",
+        {
+          password: newPassword,
+        },
+        {
+          withCredentials: true,
+        },
+      );
+
+      if (response.status === 200) {
+        navigate("/");
+        sessionStorage.removeItem("email");
+      }
+
+      setMessage(response.data.message);
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  }
+
+  return {
+    loading,
+    message,
+    createOtp,
+    verifyOtp,
+    changePassword,
+  };
+};
+
 export const useLogout = () => {
   const navigate = useNavigate();
 
@@ -87,8 +157,8 @@ export const useLogout = () => {
     try {
       const response = await axiosInstance.post("/logout");
 
-      if (response.data.success) {
-        navigate("/login");
+      if (response.status === 200) {
+        window.location.replace("/");
       }
     } catch (error) {
       if (error.response) {

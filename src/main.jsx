@@ -8,8 +8,9 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./context/AuthContext";
-import PasswordReset from "./components/auth/PasswordReset";
 import OtpVerification from "./components/auth/OTPVerification";
+import VerifyEmail from "./components/auth/EmailVerification.jsx";
+import ChagePassword from "./components/auth/ChangePassword.jsx";
 
 const queryClient = new QueryClient();
 
@@ -37,11 +38,15 @@ const route = createBrowserRouter([
   },
   {
     path: "/reset-password",
-    element: <PasswordReset />,
+    element: <VerifyEmail />,
   },
   {
-    path: "/reset-password/verified-otp",
+    path: "/reset-password/verify-otp",
     element: <OtpVerification />,
+  },
+  {
+    path: "/change-password",
+    element: <ChagePassword />,
   },
 ]);
 
@@ -53,5 +58,5 @@ root.render(
         <RouterProvider router={route} />
       </AuthProvider>
     </QueryClientProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

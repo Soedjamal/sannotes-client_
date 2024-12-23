@@ -1,12 +1,11 @@
-import "./home.css";
-import { useNavigate } from "react-router-dom";
+import "./styles/home.css";
 import Navbar from "../components/header/Navbar";
-import { useEffect, useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
+import { useAuthorize } from "../hooks/useAuthorize";
 
 const Home = () => {
   const { isAuthenticated, user } = useAuthContext();
-  const navigate = useNavigate();
+  const { navigate } = useAuthorize();
 
   const handleNavigation = (isLoginPath, notLoginPath) => {
     isAuthenticated ? navigate(isLoginPath) : navigate(notLoginPath);

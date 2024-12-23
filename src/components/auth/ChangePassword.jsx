@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./auth.css";
 import Navbar from "../header/Navbar";
 import { useForm } from "react-hook-form";
@@ -7,9 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useResetPassword } from "../../hooks/useAuth";
 import { useValidationResetPassword } from "../../hooks/useValidate";
 
-const OtpVerification = () => {
-  const navigate = useNavigate();
-  const { verifyOtp, message } = useResetPassword();
+const ChagePassword = () => {
+  const { changePassword, message } = useResetPassword();
   const { resetPwValidationSchema } = useValidationResetPassword();
 
   const { register, formState, handleSubmit } = useForm({
@@ -17,34 +15,34 @@ const OtpVerification = () => {
   });
 
   const onSubmit = handleSubmit((values) => {
-    const email = sessionStorage.getItem("email");
-    verifyOtp(values.otp.trim(), email);
+    changePassword(values.password.trim());
   });
 
   return (
     <>
       <Navbar />
       <form className="form" onSubmit={onSubmit}>
-        <h2 className="title">Kirim Kode Verifikasi</h2>
+        <h2 className="title">Ganti Password</h2>
         <div className="form-container">
           <label className="label" htmlFor="email">
-            Masukkan Kode
+            Password Baru
           </label>
           <input
             type="text"
-            placeholder="Masukkan 6 digit kode"
-            {...register("otp")}
+            id="email"
+            placeholder="Masukkan password baru"
+            {...register("password")}
             className="auth-input"
           />
 
-          {formState.errors.otp ? (
-            <p className="alert">{formState.errors.otp.message}</p>
+          {formState.errors.password ? (
+            <p className="alert">{formState.errors.password.message}</p>
           ) : (
             message && <p className="alert">{message}</p>
           )}
 
           <button className="auth-btn" type="submit">
-            Kirim Kode
+            Ganti Password
           </button>
         </div>
       </form>
@@ -52,4 +50,4 @@ const OtpVerification = () => {
   );
 };
 
-export default OtpVerification;
+export default ChagePassword;

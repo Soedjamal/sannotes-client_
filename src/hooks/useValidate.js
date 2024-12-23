@@ -24,3 +24,17 @@ export const useValidationLogin = () => {
 
   return { loginValidationSchema };
 };
+
+export const useValidationResetPassword = () => {
+  const resetPwValidationSchema = z.object({
+    otp: z
+      .string()
+      .min(6, "kode verifikasi minimal 6 karakter")
+      .max(6, "kode verifikasi maksimal 6 karakter")
+      .optional(),
+    email: z.string().email().min(1, "email wajib diisi").optional(),
+    password: z.string().min(8, "password minimal 8 karakter").optional(),
+  });
+
+  return { resetPwValidationSchema };
+};

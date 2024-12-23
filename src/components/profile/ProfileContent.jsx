@@ -6,10 +6,16 @@ import { useAuthContext } from "../../context/AuthContext";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTodo } from "../../hooks/useTodo";
 import UsernameText from "../atoms/Username";
+import { useLogout } from "../../hooks/useAuth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { useAuthorize } from "../../hooks/useAuthorize";
 
-const ProfileEditMenu = ({ className, userInfo }) => {
+const ProfileEditMenu = ({ className, userInfo, setMenu }) => {
   const [username, setUsername] = useState("");
   const { updateUsername } = useTheUser();
+  const [message, setMessage] = useState(false);
+  const { logout } = useLogout();
 
   const queryClient = useQueryClient();
 
@@ -17,34 +23,73 @@ const ProfileEditMenu = ({ className, userInfo }) => {
     mutationFn: updateUsername,
     onSuccess: () => {
       queryClient.invalidateQueries(["users"]);
+      setMenu(false);
     },
   });
+
+  const handleChange = (e) => {
+    const usernameInput = e.target.value;
+
+    if (usernameInput.length < 3) {
+      setMessage(true);
+    }
+
+    if (usernameInput.length >= 3) {
+      setMessage(false);
+    }
+
+    setUsername(usernameInput);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const payload = {
-      id: userInfo.id,
-      username: username.trim(),
-    };
+    if (username.length >= 3) {
+      const payload = {
+        id: userInfo.id,
+        username: username.trim(),
+      };
 
-    updateUsernameMutation.mutate(payload);
+      updateUsernameMutation.mutate(payload);
+      setUsername("");
+    }
   };
 
   return (
     <div className={className}>
-      <form className="edit-profile-form" onSubmit={handleSubmit}>
-        <label className="label-edit-username" htmlFor="">
-          Ganti Username
-        </label>
-        <input
-          type="text"
-          className="input-edit-username"
-          placeholder={userInfo?.username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <button className="edit-profile-btn">Ganti</button>
-      </form>
+      <div className="close-menu-bar" onClick={() => setMenu(false)}></div>
+      <div className="edit-profile-form-container">
+        <form className="edit-profile-form" onSubmit={handleSubmit}>
+          <label className="label-edit-username" htmlFor="">
+            Ganti Username
+          </label>
+          <input
+            type="text"
+            className="input-edit-username"
+            placeholder={userInfo?.username}
+            onChange={handleChange}
+          />
+
+          <p className="alert">
+            {message ? "username setidaknya 3 karakter" : null}
+          </p>
+
+          <button className="edit-profile-btn">Ganti</button>
+        </form>
+        <button
+          onClick={() => logout()}
+          style={{
+            gap: "10px",
+            display: "flex",
+            justifyContent: "center",
+            backgroundColor: "rgba(255, 120, 120)",
+          }}
+          className="edit-profile-btn"
+        >
+          <FontAwesomeIcon icon={faRightFromBracket} />
+          Logout
+        </button>
+      </div>
     </div>
   );
 };
@@ -52,8 +97,6 @@ const ProfileEditMenu = ({ className, userInfo }) => {
 const ProfilePicture = () => {
   const { getUser } = useTheUser();
   const [menu, setMenu] = useState(false);
-  const navigate = useNavigate();
-  const { isAuthenticated, setIsAuthenticated } = useAuthContext();
 
   const { data: user } = useQuery({
     queryKey: ["users"],
@@ -65,16 +108,6 @@ const ProfilePicture = () => {
     queryKey: ["tasks"],
     queryFn: fetchTodos,
   });
-
-  useEffect(() => {
-    if (user) {
-      setIsAuthenticated(!isAuthenticated);
-    }
-  }, []);
-
-  const handleNavigation = (login, notLogin) => {
-    isAuthenticated ? navigate(login) : navigate(notLogin);
-  };
 
   return (
     <>
@@ -144,6 +177,7 @@ const ProfilePicture = () => {
 
       <ProfileEditMenu
         userInfo={user}
+        setMenu={(state) => setMenu(state)}
         className={menu ? "profile-edit-menu-on" : "profile-edit-menu-off"}
       />
     </>

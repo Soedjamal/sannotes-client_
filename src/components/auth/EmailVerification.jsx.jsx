@@ -1,25 +1,29 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./auth.css";
 import Navbar from "../header/Navbar";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useResetPassword } from "../../hooks/useAuth";
+import { useValidationResetPassword } from "../../hooks/useValidate";
 
-const PasswordReset = () => {
-  const [showpass, setShowPass] = useState(false);
-  const navigate = useNavigate();
+const VerifyEmail = () => {
+  const { createOtp, message, loading } = useResetPassword();
+  const { resetPwValidationSchema } = useValidationResetPassword();
 
-  const { register, formState, handleSubmit } = useForm({});
+  const { register, formState, handleSubmit } = useForm({
+    resolver: zodResolver(resetPwValidationSchema),
+  });
 
   const onSubmit = handleSubmit((values) => {
-    PasswordResetPayload(values.email.trim(), values.password);
+    createOtp(values.email.trim());
+    sessionStorage.setItem("email", values.email.trim());
   });
 
   return (
     <>
       <Navbar />
       <form className="form" onSubmit={onSubmit}>
-        <h2 className="title">Reset Password</h2>
+        <h2 className="title">Verifikasi Diri Anda</h2>
         <div className="form-container">
           <label className="label" htmlFor="email">
             Masukkan Email Verifikasi
@@ -27,27 +31,23 @@ const PasswordReset = () => {
           <input
             type="text"
             id="email"
+            placeholder="contoh: example@gmail.com"
             {...register("email")}
             className="auth-input"
           />
 
-          {/* {formState.errors.email ? (
+          {formState.errors.email ? (
             <p className="alert">{formState.errors.email.message}</p>
           ) : (
-            messages && <p className="alert">{messages.erroremail}</p>
+            message && <p className="alert">{message}</p>
           )}
 
-          {formState.errors.password ? (
-            <p className="alert">{formState.errors.password.message}</p>
-          ) : (
-            messages && <p className="alert">{messages.errorPassword}</p>
-          )} */}
           <button
-            onClick={() => navigate("./verified-otp")}
             className="auth-btn"
             type="submit"
+            disabled={loading && "true"}
           >
-            Kirim Kode
+            {loading ? "Memproses.." : "Kirim Kode"}
           </button>
         </div>
 
@@ -62,4 +62,4 @@ const PasswordReset = () => {
   );
 };
 
-export default PasswordReset;
+export default VerifyEmail;

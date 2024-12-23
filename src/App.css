@@ -6,12 +6,14 @@
   box-sizing: border-box;
   font-family: "Public Sans", Helvetica;
   /* outline: 2px solid green; */
+  /* border: 1px solid red; */
 }
 
 .App {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
 }
 
 *::-webkit-scrollbar {
@@ -23,7 +25,7 @@
 }
 
 .async-btn {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -80,7 +82,9 @@
   justify-content: space-between;
   position: relative;
 }
+
 .sort {
+  position: absolute;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -90,7 +94,7 @@
   padding: 20px;
 }
 
-.sort-menu {
+.sort-menu-btn {
   font-size: 0.8rem;
   border-radius: 5px;
   padding: 5px 8px;
@@ -305,24 +309,22 @@
 
 .sort-menu-on {
   border-radius: 5px;
-  position: absolute;
   top: 70px;
   right: 0;
   transition: all 0.5s ease;
 }
 .sort-menu-off {
   border-radius: 5px;
-  position: absolute;
-  top: 80px;
-  right: -1000px;
-
+  top: 70px;
+  right: 0;
+  transform: translateX(200%);
   transition: all 0.5s ease-in;
 }
 
 @media (max-width: 767px) {
   .todo-input {
     width: 280px;
-    padding: 5px;
+    padding: 10px 5px;
     outline: none;
     border: 2px solid black;
     border-radius: 5px;

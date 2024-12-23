@@ -98,7 +98,7 @@ const Todo = ({ todo, handleEdit, handleDelete }) => {
             </p>
             <p className="createdAt">
               <FontAwesomeIcon icon={faCheckCircle} className="time" />
-              {todo.completed ? "Completed" : "Not Completed"}
+              {todo.completed ? "Tugas Selesai" : "Belum Selesai"}
             </p>
           </div>
         </div>

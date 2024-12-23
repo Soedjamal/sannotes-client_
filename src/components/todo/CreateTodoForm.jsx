@@ -32,7 +32,7 @@ const TodoForm = () => {
         type="text"
         onChange={(e) => setTask(e.target.value)}
         value={task}
-        placeholder="Add your task"
+        placeholder="Tambahkan tugas"
       />
       <button className="todo-btn" type="submit">
         {isPending ? "Add.." : "Add"}

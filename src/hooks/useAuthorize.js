@@ -6,14 +6,8 @@ import axios from "axios";
 import { useAuthContext } from "../context/AuthContext";
 
 export const useAuthorize = () => {
-  const {
-    setIsAuthenticated,
-    isAuthenticated,
-    setExpire,
-    expire,
-    setToken,
-    token,
-  } = useAuthContext();
+  const { setIsAuthenticated, setExpire, expire, setToken, token } =
+    useAuthContext();
 
   const [userDecode, setDecodedUser] = useState([]);
 
@@ -34,7 +28,7 @@ export const useAuthorize = () => {
   };
 
   const axiosJWT = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true,
   });
 
@@ -64,7 +58,7 @@ export const useAuthorize = () => {
 
       return config;
     },
-    (error) => Promise.reject(error)
+    (error) => Promise.reject(error),
   );
 
   return {

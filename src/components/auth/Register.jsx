@@ -20,6 +20,7 @@ const Register = () => {
 
   const onSubmit = handleSubmit(async (values) => {
     const { username, email, password } = values;
+
     await registerPayload(values.username, values.email, values.password);
 
     navigate();

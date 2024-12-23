@@ -39,7 +39,6 @@ export const useTodo = () => {
       });
 
       setMessage(response.data.message);
-      console.log(response.data.message);
       setMsgTimeOut(true);
 
       setTimeout(() => {
