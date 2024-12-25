@@ -6,7 +6,7 @@ export const useValidateRegister = () => {
       .string()
       .min(3, "username minimal 3 karakter")
       .max(16, "username maksimal 16 karakter"),
-    email: z.string().email(),
+    email: z.string().email("format email tidak valid"),
     password: z.string().min(8, "password minimal 8 karakter"),
   });
 

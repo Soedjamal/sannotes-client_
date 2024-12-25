@@ -11,7 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 const Register = () => {
   const [showpass, setShowPass] = useState(false);
-  const { registerPayload, messages, navigate } = useRegister();
+  const { registerPayload, messages, navigate, loading } = useRegister();
   const { registerValidationSchema } = useValidateRegister();
 
   const { register, handleSubmit, formState } = useForm({
@@ -40,6 +40,7 @@ const Register = () => {
           </label>
           <input
             type="text"
+            placeholder="contoh: SanNotes"
             id="username"
             {...register("username")}
             className="auth-input"
@@ -56,6 +57,7 @@ const Register = () => {
           </label>
           <input
             type="email"
+            placeholder="contoh: sannotes@example.com"
             id="email"
             {...register("email")}
             className="auth-input"
@@ -74,6 +76,7 @@ const Register = () => {
             <input
               type={showpass ? "text" : "password"}
               id="password"
+              placeholder="Buat password yang kuat"
               {...register("password")}
               className="auth-input-password"
             />
@@ -94,8 +97,8 @@ const Register = () => {
             <p className="alert">{formState.errors.password.message}</p>
           )}
 
-          <button className="auth-btn" type="submit">
-            Buat Akun
+          <button className="auth-btn" type="submit" disabled={loading && true}>
+            {loading ? "Membuat Akun.." : "Buat Akun"}
           </button>
         </div>
 

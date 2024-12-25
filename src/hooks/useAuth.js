@@ -5,22 +5,24 @@ import { replace, useNavigate } from "react-router-dom";
 export const useRegister = () => {
   const [message, setMessage] = useState([]);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   async function registerPayload(username, email, password) {
     const payload = { username, email, password };
 
     try {
+      setLoading(true);
       const response = await axiosInstance.post("/register", payload);
       setMessage(response.data.message);
 
       if (response.status === 200) {
         navigate("/login");
+        setLoading(false);
       }
     } catch (err) {
       if (err.response) {
+        setLoading(false);
         setMessage(err.response.data.message);
-      } else {
-        setMessage("Terjadi kesalahan pada server");
       }
     }
   }
@@ -35,6 +37,7 @@ export const useRegister = () => {
   return {
     registerPayload,
     messages,
+    loading,
     navigate,
   };
 };
@@ -60,9 +63,8 @@ export const useLogin = () => {
       }
     } catch (error) {
       if (error.response) {
+        setLoading(false);
         setMessage(error.response.data.message || "Terjadi kesalahan");
-      } else {
-        setMessage("Terjadi kesalahan pada server");
       }
     }
   }
@@ -75,6 +77,7 @@ export const useLogin = () => {
   return {
     token,
     loginPayload,
+    loading,
     messages,
   };
 };
@@ -97,6 +100,7 @@ export const useResetPassword = () => {
       setMessage(response.data.message);
     } catch (error) {
       setMessage(error.response.data.message);
+      setLoading(false);
     }
   }
 
@@ -137,7 +141,7 @@ export const useResetPassword = () => {
 
       setMessage(response.data.message);
     } catch (error) {
-      console.log(error.response.data.message);
+      setMessage(response.data.message);
     }
   }
 

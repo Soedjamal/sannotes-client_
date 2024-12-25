@@ -13,7 +13,7 @@ const Login = () => {
   const [showpass, setShowPass] = useState(false);
   const { loginValidationSchema } = useValidationLogin();
 
-  const { loginPayload, messages } = useLogin();
+  const { loginPayload, messages, loading } = useLogin();
 
   const { register, formState, handleSubmit } = useForm({
     resolver: zodResolver(loginValidationSchema),
@@ -79,8 +79,8 @@ const Login = () => {
             Lupa password?
           </Link>
 
-          <button className="auth-btn" type="submit">
-            Masuk
+          <button className="auth-btn" type="submit" disabled={loading && true}>
+            {loading ? "Mencoba Masuk.." : "Masuk"}
           </button>
         </div>
         <h4 className="not-login">

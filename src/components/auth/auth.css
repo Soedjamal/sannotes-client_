@@ -18,7 +18,7 @@
 
 .auth-input {
   margin-bottom: 20px;
-  padding: 0.3rem;
+  padding: 0.5rem 0.3rem;
   border: 2px solid black;
   border-radius: 5px;
 }
@@ -33,7 +33,7 @@
 
 .input-password {
   border-radius: 5px;
-  padding: 0.3rem;
+  padding: 0.5rem 0.3rem;
   margin-bottom: 20px;
   border: 2px solid black;
   width: 100%;
@@ -41,7 +41,7 @@
 
 .auth-btn {
   margin-right: 3px;
-  padding: 0.4rem;
+  padding: 0.5rem 0.4rem;
   font-weight: 700;
   background-color: rgb(183, 111, 255);
   border: 2px solid black;
@@ -54,11 +54,13 @@
 }
 
 .label {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   margin-bottom: 8px;
 }
 
 .alert {
+  margin-top: 3px;
   position: relative;
   top: -20px;
   font-size: 0.8rem;
