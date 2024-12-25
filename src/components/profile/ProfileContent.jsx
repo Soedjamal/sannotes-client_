@@ -10,6 +10,7 @@ import { useLogout } from "../../hooks/useAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useAuthorize } from "../../hooks/useAuthorize";
+import { BarLoader, CircleLoader } from "../atoms/Loader";
 
 const ProfileEditMenu = ({ className, userInfo, setMenu }) => {
   const [username, setUsername] = useState("");
@@ -74,7 +75,12 @@ const ProfileEditMenu = ({ className, userInfo, setMenu }) => {
             {message ? "username setidaknya 3 karakter" : null}
           </p>
 
-          <button className="edit-profile-btn">Ganti</button>
+          <button
+            className="edit-profile-btn"
+            disabled={updateUsernameMutation.isPending && "true"}
+          >
+            {updateUsernameMutation.isPending ? "Mengganti.." : "Ganti"}
+          </button>
         </form>
         <button
           onClick={() => logout()}
@@ -98,13 +104,13 @@ const ProfilePicture = () => {
   const { getUser } = useTheUser();
   const [menu, setMenu] = useState(false);
 
-  const { data: user } = useQuery({
+  const { data: user, isPending: userPending } = useQuery({
     queryKey: ["users"],
     queryFn: getUser,
   });
 
   const { fetchTodos } = useTodo();
-  const { data: todos } = useQuery({
+  const { data: todos, isPending: todosPending } = useQuery({
     queryKey: ["tasks"],
     queryFn: fetchTodos,
   });
@@ -121,6 +127,7 @@ const ProfilePicture = () => {
         </div>
         <div className="profile-data">
           <div className="profile-details-container">
+            {userPending && <BarLoader />}
             <h2 className="profile-username">{user?.username}</h2>
             <h3 className="profile-email">{user?.email}</h3>
           </div>
@@ -138,33 +145,39 @@ const ProfilePicture = () => {
       <div className="profile-stats">
         <div className="task-created-container">
           <h5>
-            {
+            {todosPending ? (
+              <CircleLoader size={"15px"} color="gray" />
+            ) : (
               todos?.map((todo) => {
                 return todo.id;
               }).length
-            }{" "}
+            )}{" "}
             Tasks Created
           </h5>
         </div>
         <p>|</p>
         <div className="task-completed-container">
           <h5>
-            {
+            {todosPending ? (
+              <CircleLoader size={"15px"} color="gray" />
+            ) : (
               todos?.filter((todo) => {
                 return todo.completed;
               }).length
-            }{" "}
+            )}{" "}
             Tasks Completed
           </h5>
         </div>
         <p>|</p>
         <div className="task-completed-container">
           <h5>
-            {
+            {todosPending ? (
+              <CircleLoader size={"15px"} color="gray" />
+            ) : (
               todos?.filter((todo) => {
                 return !todo.completed;
               }).length
-            }{" "}
+            )}{" "}
             Tasks Uncompleted
           </h5>
         </div>

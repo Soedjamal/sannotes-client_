@@ -34,7 +34,7 @@ const TodoForm = () => {
         value={task}
         placeholder="Tambahkan tugas"
       />
-      <button className="todo-btn" type="submit">
+      <button className="todo-btn" type="submit" disabled={isPending && "true"}>
         {isPending ? "Add.." : "Add"}
       </button>
     </form>

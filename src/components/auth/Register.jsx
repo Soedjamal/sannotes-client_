@@ -74,6 +74,7 @@ const Register = () => {
             <input
               type={showpass ? "text" : "password"}
               id="password"
+              placeholder="Buat password yang kuat"
               {...register("password")}
               className="auth-input-password"
             />

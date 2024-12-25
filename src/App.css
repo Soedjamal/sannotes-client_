@@ -24,6 +24,13 @@
   margin-top: 50px;
 }
 
+.loaderCenter {
+  display: flex;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+}
+
 .async-btn {
   position: fixed;
   top: 0;

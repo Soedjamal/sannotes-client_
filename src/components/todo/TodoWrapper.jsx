@@ -11,6 +11,7 @@ import {
   faBars,
   faSort,
 } from "@fortawesome/free-solid-svg-icons";
+import { CircleLoader } from "../atoms/Loader";
 
 const TodoWrapper = () => {
   const [isEdit, setIsEdit] = useState(null);
@@ -18,7 +19,7 @@ const TodoWrapper = () => {
   const [sortMenu, setSortMenu] = useState(false);
 
   const { fetchTodos, deleteTodo } = useTodo();
-  const { data: todos } = useQuery({
+  const { data: todos, isPending } = useQuery({
     queryKey: ["tasks"],
     queryFn: fetchTodos,
   });
@@ -48,48 +49,58 @@ const TodoWrapper = () => {
   };
 
   return (
-    <div className="TodoWrapper">
-      <div className="todo-title-container">
-        <h3 className="todos-title">TodoList</h3>
-        <FontAwesomeIcon
-          icon={faSort}
-          className="sort-menu-btn"
-          onClick={() => setSortMenu(!sortMenu)}
-        />
+    <>
+      <div className="TodoWrapper">
+        <div className="todo-title-container">
+          <h3 className="todos-title">TodoList</h3>
+          <FontAwesomeIcon
+            icon={faSort}
+            className="sort-menu-btn"
+            onClick={() => setSortMenu(!sortMenu)}
+          />
 
-        <div className={sortMenu ? "sort sort-menu-on" : "sort sort-menu-off"}>
-          <div className="sort-action" onClick={() => setSortType("latest")}>
-            <FontAwesomeIcon icon={faArrowUp} className="sort-ico" />
-            <h5>Urutkan terbaru</h5>
-          </div>
+          <div
+            className={sortMenu ? "sort sort-menu-on" : "sort sort-menu-off"}
+          >
+            <div className="sort-action" onClick={() => setSortType("latest")}>
+              <FontAwesomeIcon icon={faArrowUp} className="sort-ico" />
+              <h5>Urutkan terbaru</h5>
+            </div>
 
-          <div className="sort-action" onClick={() => setSortType("oldest")}>
-            <FontAwesomeIcon icon={faArrowDown} className="sort-ico" />
-            <h5>Urutkan terlama</h5>
+            <div className="sort-action" onClick={() => setSortType("oldest")}>
+              <FontAwesomeIcon icon={faArrowDown} className="sort-ico" />
+              <h5>Urutkan terlama</h5>
+            </div>
           </div>
         </div>
-      </div>
 
-      <TodoForm />
-      <div className="todo-lists">
-        {getSortedTodos().map((todo) =>
-          isEdit === todo.id ? (
-            <EditForm
-              key={todo.id}
-              hasEdit={() => setIsEdit(null)}
-              todo={todo}
-            />
-          ) : (
-            <Todo
-              key={todo.id}
-              todo={todo}
-              handleDelete={handleDelete}
-              handleEdit={(id) => setIsEdit(id)}
-            />
-          ),
-        )}
+        <TodoForm />
+
+        {isPending ? (
+          <div className="loaderCenter">
+            <CircleLoader size={"30px"} />
+          </div>
+        ) : null}
+        <div className="todo-lists">
+          {getSortedTodos().map((todo) =>
+            isEdit === todo.id ? (
+              <EditForm
+                key={todo.id}
+                hasEdit={() => setIsEdit(null)}
+                todo={todo}
+              />
+            ) : (
+              <Todo
+                key={todo.id}
+                todo={todo}
+                handleDelete={handleDelete}
+                handleEdit={(id) => setIsEdit(id)}
+              />
+            ),
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

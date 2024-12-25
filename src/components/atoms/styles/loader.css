@@ -1,0 +1,53 @@
+.loader {
+  border-radius: 50%;
+  animation: loader 0.5s infinite;
+}
+
+.bar-loader-container {
+  display: flex;
+  flex-direction: column;
+}
+.bar-loader-sm {
+  width: 50px;
+  max-width: 100px;
+  margin-bottom: 10px;
+  height: 15px;
+  border-radius: 7px;
+  background-color: gray;
+  opacity: 0.2;
+  animation: barLoader-sm 0.9s infinite alternate;
+}
+.bar-loader-md {
+  width: 50px;
+  height: 15px;
+  border-radius: 7px;
+  background-color: gray;
+  opacity: 0.2;
+  animation: barLoader-md 0.8s infinite alternate;
+}
+
+@keyframes loader {
+  0% {
+    rotate: 0;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+
+@keyframes barLoader-sm {
+  0% {
+    width: 50px;
+  }
+  100% {
+    width: 100px;
+  }
+}
+@keyframes barLoader-md {
+  0% {
+    width: 50px;
+  }
+  100% {
+    width: 200px;
+  }
+}
