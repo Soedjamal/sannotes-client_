@@ -8,7 +8,14 @@ import { useTodo } from "../../hooks/useTodo";
 import UsernameText from "../atoms/Username";
 import { useLogout } from "../../hooks/useAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheckCircle,
+  faCheckDouble,
+  faList,
+  faRightFromBracket,
+  faStickyNote,
+  faXmarkCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { useAuthorize } from "../../hooks/useAuthorize";
 import { BarLoader, CircleLoader } from "../atoms/Loader";
 
@@ -144,7 +151,8 @@ const ProfilePicture = () => {
 
       <div className="profile-stats">
         <div className="task-created-container">
-          <h5>
+          <FontAwesomeIcon icon={faList} />
+          <h5 className="stat">
             {todosPending ? (
               <CircleLoader size={"15px"} color="gray" />
             ) : (
@@ -152,12 +160,13 @@ const ProfilePicture = () => {
                 return todo.id;
               }).length
             )}{" "}
-            Tasks Created
+            Tugas Dibuat
           </h5>
         </div>
         <p>|</p>
         <div className="task-completed-container">
-          <h5>
+          <FontAwesomeIcon icon={faCheckCircle} />
+          <h5 className="stat">
             {todosPending ? (
               <CircleLoader size={"15px"} color="gray" />
             ) : (
@@ -165,12 +174,13 @@ const ProfilePicture = () => {
                 return todo.completed;
               }).length
             )}{" "}
-            Tasks Completed
+            Tugas Selesai
           </h5>
         </div>
         <p>|</p>
-        <div className="task-completed-container">
-          <h5>
+        <div className="task-uncompleted-container">
+          <FontAwesomeIcon icon={faXmarkCircle} />
+          <h5 className="stat">
             {todosPending ? (
               <CircleLoader size={"15px"} color="gray" />
             ) : (
@@ -178,7 +188,7 @@ const ProfilePicture = () => {
                 return !todo.completed;
               }).length
             )}{" "}
-            Tasks Uncompleted
+            Tugas Belum Selesai
           </h5>
         </div>
       </div>

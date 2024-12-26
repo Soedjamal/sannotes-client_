@@ -42,7 +42,9 @@
 
 .profile-stats {
   display: flex;
+  width: 100%;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   color: rgb(90, 90, 90);
   margin-top: 20px;
@@ -83,6 +85,28 @@
 .label-edit-username {
   font-size: 1rem;
   font-weight: 700;
+}
+
+.task-created-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(150, 150, 150);
+}
+.task-completed-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(150, 150, 150);
+}
+.task-uncompleted-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(150, 150, 150);
+}
+.stat {
+  font-size: 0.7rem;
 }
 
 .profile-edit-menu-on {
