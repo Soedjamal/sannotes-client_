@@ -127,7 +127,7 @@ const ProfilePicture = () => {
       <div className="profile-content-container">
         <div className="profile-picture-container">
           <img
-            src="./SNot.svg"
+            src="./sannotes.svg"
             alt="Profile Picture"
             className="profile-picture"
           />
