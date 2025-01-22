@@ -48,6 +48,14 @@ const TodoWrapper = () => {
     });
   };
 
+  if (isPending) {
+    return (
+      <div className="loaderCenter">
+        <CircleLoader size={"50px"} />
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="TodoWrapper">
@@ -76,11 +84,6 @@ const TodoWrapper = () => {
 
         <TodoForm />
 
-        {isPending ? (
-          <div className="loaderCenter">
-            <CircleLoader size={"30px"} />
-          </div>
-        ) : null}
         <div className="todo-lists">
           {getSortedTodos().map((todo) =>
             isEdit === todo.id ? (
