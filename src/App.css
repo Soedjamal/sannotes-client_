@@ -340,20 +340,6 @@ body {
   box-shadow: 0 0 black;
 }
 
-.sort-menu-on {
-  border-radius: 5px;
-  top: 180px;
-  right: 20px;
-  transition: all 0.5s ease;
-}
-.sort-menu-off {
-  border-radius: 5px;
-  top: 180px;
-  right: 0;
-  transform: translateX(200%);
-  transition: all 0.5s ease-in;
-}
-
 @media (max-width: 767px) {
   .todo-input {
     width: 280px;
@@ -422,6 +408,20 @@ body {
     outline: none;
     border: 2px solid black;
     border-radius: 5px;
+  }
+
+  .sort-menu-on {
+    border-radius: 5px;
+    top: 180px;
+    right: 0;
+    transition: all 0.5s ease;
+  }
+  .sort-menu-off {
+    border-radius: 5px;
+    top: 180px;
+    right: 0;
+    transform: translateX(200%);
+    transition: all 0.5s ease-in;
   }
 }
 
