@@ -1,0 +1,13 @@
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 30px;
+  background-color: whitesmoke;
+  border: 2px solid black;
+  border-radius: 10px 10px 0 0;
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+}

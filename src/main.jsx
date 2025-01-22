@@ -11,7 +11,8 @@ import { AuthProvider } from "./context/AuthContext";
 import OtpVerification from "./components/auth/OTPVerification";
 import VerifyEmail from "./components/auth/EmailVerification.jsx";
 import ChagePassword from "./components/auth/ChangePassword.jsx";
-
+import _404 from "./pages/_404.jsx";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
 const queryClient = new QueryClient();
 
 const route = createBrowserRouter([
@@ -48,6 +49,10 @@ const route = createBrowserRouter([
     path: "/change-password",
     element: <ChagePassword />,
   },
+  {
+    path: "/*",
+    element: <_404 />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -55,7 +60,9 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <RouterProvider router={route} />
+        <ThemeProvider>
+          <RouterProvider router={route} />
+        </ThemeProvider>
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>,

@@ -2,11 +2,21 @@
   .home {
     padding: 50px 0 0 100px;
     width: 500px;
+    position: relative;
   }
 }
+
+* {
+  /* outline: 1px solid gray; */
+}
+
 @media (max-width: 767px) {
   .home {
-    padding: 20px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-height: 100vh;
   }
 }
 
@@ -15,25 +25,66 @@
   font-size: 1.5rem;
   color: gray;
 }
+
 .home-title {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   margin-bottom: 10px;
+  padding: 55px 30px 0 30px;
+}
+.hooks-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: rgb(80, 80, 80);
+}
+.desc-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #a484ff;
 }
 
 .home-desc {
-  margin-bottom: 50px;
+  display: flex;
+  width: 90%;
+  color: rgb(250, 240, 220);
+  padding: 0 0 10px 30px;
+  border-radius: 10px;
+  /* background-color: rgb(180, 250, 120); */
+  background-color: #a484ff;
+  border: 2px solid black;
+  margin: 50px 0;
+  align-items: center;
+  box-shadow: 4px 4px black;
+  /* border: 1px solid gray; */
+}
+
+.sannotes-maskot {
+  width: 150px;
+  height: 150px;
+  /* border: 1px solid gray; */
+}
+
+.home-desc p {
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-align: start;
+  /* border: 1px solid gray; */
 }
 
 .start-option {
+  margin: 0 30px;
   display: flex;
   gap: 20px;
 }
 
 .login-btn {
-  background-color: rgb(47, 255, 134);
+  background-color: #51b59f;
   border-radius: 5px;
   padding: 10px;
   width: 150px;
-  color: rgb(0, 89, 37);
+  /* color: rgb(0, 89, 37); */
+  color: #fdf7f1;
   font-weight: 800;
   border: 2px solid black;
   box-shadow: 3px 3px black;
@@ -44,11 +95,12 @@
   transform: translate(3px, 3px);
 }
 .register-btn {
-  background-color: rgb(47, 141, 255);
+  background-color: #9feb98;
   border-radius: 5px;
   padding: 10px;
   width: 150px;
-  color: rgb(205, 228, 255);
+  /* color: #fdf7f1; */
+  color: black;
   font-weight: 800;
   border: 2px solid black;
   box-shadow: 3px 3px black;

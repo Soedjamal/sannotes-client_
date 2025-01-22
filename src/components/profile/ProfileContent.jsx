@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
 import "./profile.css";
 import { useTheUser } from "../../hooks/useTheUser";
-import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../context/AuthContext";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTodo } from "../../hooks/useTodo";
-import UsernameText from "../atoms/Username";
 import { useLogout } from "../../hooks/useAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
-  faCheckDouble,
   faList,
   faRightFromBracket,
-  faStickyNote,
   faXmarkCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { useAuthorize } from "../../hooks/useAuthorize";
 import { BarLoader, CircleLoader } from "../atoms/Loader";
+import { useNavigate } from "react-router-dom";
+import { useAuthorize } from "../../hooks/useAuthorize";
 
 const ProfileEditMenu = ({ className, userInfo, setMenu }) => {
   const [username, setUsername] = useState("");
@@ -127,7 +123,7 @@ const ProfilePicture = () => {
       <div className="profile-content-container">
         <div className="profile-picture-container">
           <img
-            src="./sannotes.svg"
+            src="./sannotesLow.svg"
             alt="Profile Picture"
             className="profile-picture"
           />

@@ -5,7 +5,7 @@ import TodoList from "./pages/TodoList";
 function App() {
   return (
     <>
-      <Navbar />
+      <Navbar title={"none"} />
       <div className="App">
         <TodoList />
       </div>

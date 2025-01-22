@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuthorize } from "./useAuthorize";
 import { useAuthContext } from "../context/AuthContext";
 import { jwtDecode } from "jwt-decode";
@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 export const useTheUser = () => {
   const { axiosJWT } = useAuthorize();
   const { user, setUser } = useAuthContext();
+  const [username, setUsername] = useState();
 
   const getUser = async () => {
     try {
@@ -14,6 +15,7 @@ export const useTheUser = () => {
       return response.data;
     } catch (err) {
       console.log(err);
+      return null;
     }
   };
 
@@ -24,5 +26,16 @@ export const useTheUser = () => {
     return response.data;
   };
 
-  return { getUser, updateUsername, user };
+  const getUsername = async () => {
+    const res = await axiosJWT.get("/user");
+
+    setUsername(res.data.username);
+    console.log(res.data.username);
+  };
+
+  useEffect(() => {
+    getUsername();
+  }, []);
+
+  return { getUser, updateUsername, user, username };
 };

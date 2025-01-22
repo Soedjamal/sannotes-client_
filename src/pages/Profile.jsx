@@ -6,7 +6,7 @@ import ProfilePicture from "../components/profile/ProfileContent";
 const Profile = () => {
   return (
     <>
-      <Navbar />
+      <Navbar title={"none"} />
       <div className="profile-container">
         <div className="profile-biodata">
           <ProfilePicture />

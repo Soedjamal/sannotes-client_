@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "./auth.css";
 import Navbar from "../header/Navbar";
 import { useForm } from "react-hook-form";

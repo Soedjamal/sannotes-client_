@@ -9,6 +9,34 @@
   /* border: 1px solid red; */
 }
 
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+.dark {
+  --background-color: #000000;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* .light { */
+/*   background-color: #fff; */
+/*   color: black; */
+/* } */
+/**/
+/* .dark { */
+/*   background-color: black; */
+/*   color: #fff; */
+/* } */
+
 .App {
   display: flex;
   justify-content: center;

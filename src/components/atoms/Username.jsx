@@ -11,11 +11,6 @@ const UsernameText = ({ children }) => {
     queryFn: getUser,
   });
 
-  useEffect(() => {
-    setUserData(user);
-    username(userData);
-  }, []);
-
   return (
     <>
       <div className="username-text-container">{children}</div>
