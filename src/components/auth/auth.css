@@ -17,6 +17,7 @@
 }
 
 .auth-input {
+  background-color: transparent;
   margin-bottom: 20px;
   padding: 0.5rem 0.3rem;
   border: 2px solid black;
@@ -32,6 +33,7 @@
 }
 
 .input-password {
+  background-color: transparent;
   border-radius: 5px;
   padding: 0.5rem 0.3rem;
   margin-bottom: 20px;

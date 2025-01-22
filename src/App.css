@@ -22,9 +22,7 @@
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* .light { */
@@ -111,7 +109,8 @@ body {
 }
 
 .todo-title-container {
-  margin-bottom: 30px;
+  /* border: 2px solid black; */
+  margin-bottom: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -251,7 +250,6 @@ body {
 }
 
 .todos-title {
-  margin-bottom: 20px;
   font-size: 2rem;
 }
 

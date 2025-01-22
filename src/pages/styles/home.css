@@ -16,7 +16,6 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    min-height: 100vh;
   }
 }
 
@@ -59,6 +58,19 @@
   /* border: 1px solid gray; */
 }
 
+.home-desc-head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 0;
+}
+.home-desc-head h2 {
+  color: #fdf7f1;
+}
+.home-desc-head p {
+  color: #242424;
+}
+
 .sannotes-maskot {
   width: 150px;
   height: 150px;
@@ -73,18 +85,37 @@
 }
 
 .start-option {
+  border-radius: 10px;
+  background-color: #51b59f;
+  padding: 20px 10px;
+  border: 2px solid black;
   margin: 0 30px;
+  gap: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-cta {
   display: flex;
   gap: 20px;
 }
 
+.cta-head {
+  display: flex;
+  padding: 0 10px;
+  align-items: center;
+}
+.cta-head-img {
+  width: 80px;
+}
+
 .login-btn {
-  background-color: #51b59f;
+  background-color: #fef38e;
   border-radius: 5px;
   padding: 10px;
   width: 150px;
   /* color: rgb(0, 89, 37); */
-  color: #fdf7f1;
+  color: #000000;
   font-weight: 800;
   border: 2px solid black;
   box-shadow: 3px 3px black;

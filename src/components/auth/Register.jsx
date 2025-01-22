@@ -40,7 +40,7 @@ const Register = () => {
           </label>
           <input
             type="text"
-            placeholder="contoh: SanNotes"
+            placeholder="SanNotes"
             id="username"
             {...register("username")}
             className="auth-input"
@@ -57,7 +57,7 @@ const Register = () => {
           </label>
           <input
             type="email"
-            placeholder="contoh: sannotes@example.com"
+            placeholder="sannotes@example.com"
             id="email"
             {...register("email")}
             className="auth-input"

@@ -58,7 +58,7 @@ export const useAuthorize = () => {
 
       return config;
     },
-    (error) => Promise.reject(error),
+    (error) => Promise.reject(error)
   );
 
   return {

@@ -37,6 +37,7 @@ const Login = () => {
             id="username"
             {...register("username")}
             className="auth-input"
+            placeholder="Masukkan username mu"
           />
 
           {formState.errors.username ? (
@@ -54,6 +55,7 @@ const Login = () => {
               id="password"
               {...register("password")}
               className="auth-input-password"
+              placeholder="Masukkan password mu"
             />
 
             {showpass ? (

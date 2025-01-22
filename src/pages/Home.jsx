@@ -67,12 +67,14 @@ const Home = () => {
         </div>
 
         <div className="home-desc">
-          {/* <h2>Kelola kegiatan mu</h2> */}
-          <p>
-            SanNotes adalah aplikasi web to-do list modern yang membantu Anda
-            mencatat, mengatur, dan menyelesaikan tugas dengan antarmuka
-            sederhana, fitur unggul, serta pengalaman pengguna terbaik.
-          </p>
+          <div className="home-desc-head">
+            <h2>Kelola kegiatan mu</h2>
+            <p>
+              SanNotes adalah aplikasi web to-do list modern yang membantu Anda
+              mencatat, mengatur, dan menyelesaikan tugas dengan antarmuka
+              sederhana, fitur unggul, serta pengalaman pengguna terbaik.
+            </p>
+          </div>
           {/* <ToggleTheme /> */}
           <img
             className="sannotes-maskot"
@@ -84,18 +86,29 @@ const Home = () => {
         </div>
 
         <div className="start-option">
-          <button
-            onClick={() => handleNavigation("/todos", "/login")}
-            className="login-btn"
-          >
-            {isAuth ? "Lihat Tugas" : "Mulai Sekarang"}
-          </button>
-          <button
-            onClick={() => handleNavigation("/profile", "/register")}
-            className="register-btn"
-          >
-            {isAuth ? "Lihat Profil" : "Daftar Sekarang"}
-          </button>
+          <div className="cta-head">
+            <h2>Mulai tugas pertamamu</h2>
+            <img
+              className="cta-head-img"
+              src="/images/home/partial-first.png"
+              alt=""
+            />
+          </div>
+
+          <div className="btn-cta">
+            <button
+              onClick={() => handleNavigation("/todos", "/login")}
+              className="login-btn"
+            >
+              {isAuth ? "Lihat Tugas" : "Mulai Sekarang"}
+            </button>
+            <button
+              onClick={() => handleNavigation("/profile", "/register")}
+              className="register-btn"
+            >
+              {isAuth ? "Lihat Profil" : "Daftar Sekarang"}
+            </button>
+          </div>
         </div>
       </div>
       <Footer />

@@ -52,7 +52,7 @@ const TodoWrapper = () => {
     <>
       <div className="TodoWrapper">
         <div className="todo-title-container">
-          <h3 className="todos-title">TodoList</h3>
+          <h3 className="todos-title">Create Task📝</h3>
           <FontAwesomeIcon
             icon={faSort}
             className="sort-menu-btn"
@@ -96,7 +96,7 @@ const TodoWrapper = () => {
                 handleDelete={handleDelete}
                 handleEdit={(id) => setIsEdit(id)}
               />
-            ),
+            )
           )}
         </div>
       </div>
