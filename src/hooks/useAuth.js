@@ -131,7 +131,7 @@ export const useResetPassword = () => {
         },
         {
           withCredentials: true,
-        },
+        }
       );
 
       if (response.status === 200) {

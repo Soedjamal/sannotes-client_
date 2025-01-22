@@ -9,7 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import "./navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useLogout } from "../../hooks/useAuth";
 import { useAuthContext } from "../../context/AuthContext";
 
@@ -41,6 +41,60 @@ const Menu = () => {
         <li className="menu-list">
           <FontAwesomeIcon className="menu-link-title" icon={faGear} />
           <Link className="menu-link" to="/">
+            Settings
+          </Link>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+const MenuBar = () => {
+  const { isAuthenticated } = useAuthContext();
+  const { logout } = useLogout();
+
+  const location = useLocation();
+
+  const currentPath = location.pathname;
+
+  return (
+    <nav className="menu-bar-container">
+      <ul className="menu-bar-list-container">
+        <li className="menu-bar-list">
+          <Link
+            className={`menu-bar-link ${currentPath === "/" ? "active" : ""}`}
+            to="/"
+          >
+            Home
+          </Link>
+        </li>
+        <li className="menu-bar-list">
+          <Link
+            className={`menu-bar-link ${
+              currentPath === "/todos" ? "active" : ""
+            }`}
+            to="/todos"
+          >
+            Todos
+          </Link>
+        </li>
+        <li className="menu-bar-list">
+          <Link
+            className={`menu-bar-link ${
+              currentPath === "/profile" ? "active" : ""
+            }`}
+            to="/profile"
+          >
+            Profile
+          </Link>
+        </li>
+        <li className="menu-bar-list">
+          <Link
+            className={`menu-bar-link ${
+              currentPath === "/settings" ? "active" : ""
+            }`}
+            to="/"
+          >
             Settings
           </Link>
         </li>
@@ -89,6 +143,7 @@ const Navbar = ({ title }) => {
             <h4 className="second-title">notes.</h4>
           </div>
         </div>
+        <MenuBar />
       </div>
       {menu ? (
         <div onClick={handleMenuToggle} className="hamburger-menu">

@@ -65,7 +65,6 @@ const Home = () => {
           <h1 className="hooks-title">Make your plan</h1>
           <h2 className="desc-title">On your Notes.</h2>
         </div>
-
         <div className="home-desc">
           <div className="home-desc-head">
             <h2>Kelola kegiatan mu</h2>
@@ -84,7 +83,6 @@ const Home = () => {
           {/* <b>SanNotes</b>, Ayo{" "} */}
           {/* {isAuthenticated ? "lihat tugasmu." : "mulai sekarang."} */}
         </div>
-
         <div className="start-option">
           <div className="cta-head">
             <h2>Mulai tugas pertamamu</h2>
@@ -110,8 +108,8 @@ const Home = () => {
             </button>
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };

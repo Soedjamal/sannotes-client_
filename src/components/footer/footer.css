@@ -1,13 +1,41 @@
 .footer-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: 20px;
   width: 100%;
   padding: 30px;
   background-color: whitesmoke;
   border: 2px solid black;
   border-radius: 10px 10px 0 0;
   position: absolute;
-  bottom: -100%;
+  bottom: -50%;
   left: 0;
+  font-size: 0.8rem;
+}
+
+.footer-head {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.footer-title {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  border-top: 1px solid rgb(126, 126, 126);
+  padding-top: 20px;
+  color: rgb(56, 56, 56);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-content h4 {
+  margin-bottom: 10px;
+}
+.footer-content p {
+  font-size: 0.8rem;
 }
