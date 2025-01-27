@@ -1,11 +1,15 @@
 {
   "short_name": "SanNotes",
-  "name": "SanNotes",
+  "name": "SanNotes - To-Do List App",
+  "description": "SanNotes adalah aplikasi to-do list yang intuitif dan kuat untuk membantu Anda mengatur tugas, membuat pengingat, dan meningkatkan produktivitas. Cocok untuk penggunaan pribadi maupun profesional.",
+  "lang": "id",
+  "version": "1.0.0",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "sizes": "64x64 32x32 24x24 16x16 any",
+      "type": "image/x-icon",
+      "purpose": "any"
     },
     {
       "src": "snot192.png",
@@ -18,8 +22,10 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "theme_color": "#000000",
   "background_color": "#ffffff"
 }
