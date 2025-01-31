@@ -132,7 +132,13 @@ const ProfileContent = () => {
           </div>
 
           <div className="profile-user-info">
-            <h3 className="username-title">@{user?.username}</h3>
+            <h3 className="username-title">
+              {userPending ? (
+                <CircleLoader size="20px" />
+              ) : (
+                <p>@{user?.username}</p>
+              )}
+            </h3>
             <p className="profile-user-bio">
               Bio gua njir, bio gua udah ganti njir, woilah kuacaw cik😂
             </p>
