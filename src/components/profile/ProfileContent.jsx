@@ -7,6 +7,7 @@ import { useLogout } from "../../hooks/useAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
+  faGear,
   faList,
   faRightFromBracket,
   faXmarkCircle,
@@ -103,7 +104,7 @@ const ProfileEditMenu = ({ className, userInfo, setMenu }) => {
   );
 };
 
-const ProfilePicture = () => {
+const ProfileContent = () => {
   const { getUser } = useTheUser();
   const [menu, setMenu] = useState(false);
 
@@ -121,14 +122,74 @@ const ProfilePicture = () => {
   return (
     <>
       <div className="profile-content-container">
-        <div className="profile-picture-container">
-          <img
-            src="./sannotesLow.svg"
-            alt="Profile Picture"
-            className="profile-picture"
-          />
+        <div className="bg-profile-container">
+          <div className="profile-picture-container">
+            <img
+              src="./sannotesLow.svg"
+              alt="Profile Picture"
+              className="profile-picture"
+            />
+          </div>
+
+          <div className="profile-user-info">
+            <h3 className="username-title">@{user?.username}</h3>
+            <p className="profile-user-bio">
+              Bio gua njir, bio gua udah ganti njir, woilah kuacaw cik😂
+            </p>
+          </div>
+
+          <div className="user-general-info">
+            <div className="user-general-info-items">
+              {/* <FontAwesomeIcon icon={faList} /> */}
+              <h2>
+                {" "}
+                {todosPending ? (
+                  <CircleLoader size={"15px"} color="gray" />
+                ) : (
+                  todos?.map((todo) => {
+                    return todo.id;
+                  }).length
+                )}{" "}
+              </h2>
+              <h5 className="stat-name">Tugas Dibuat</h5>
+            </div>
+
+            <div className="user-general-info-items">
+              {/* <FontAwesomeIcon icon={faCheckCircle} /> */}
+              <h2>
+                {" "}
+                {todosPending ? (
+                  <CircleLoader size={"15px"} color="gray" />
+                ) : (
+                  todos?.filter((todo) => {
+                    return todo.completed;
+                  }).length
+                )}{" "}
+              </h2>
+              <h5 className="stat-name">Tugas Selesai</h5>
+            </div>
+
+            <div className="user-general-info-items">
+              {/* <FontAwesomeIcon icon={faXmarkCircle} /> */}
+              <h2>
+                {" "}
+                {todosPending ? (
+                  <CircleLoader size={"15px"} color="gray" />
+                ) : (
+                  todos?.filter((todo) => {
+                    return !todo.completed;
+                  }).length
+                )}{" "}
+              </h2>
+              <h5 className="stat-name">Followers</h5>
+            </div>
+          </div>
         </div>
-        <div className="profile-data">
+        <div className="profile-option">
+          <button className="follow-btn">Follow Me 🚀</button>
+          <FontAwesomeIcon className="profile-settings-btn" icon={faGear} />
+        </div>
+        {/* <div className="profile-data">
           <div className="profile-details-container">
             {userPending && <BarLoader />}
             <h2 className="profile-username">{user?.username}</h2>
@@ -142,51 +203,7 @@ const ProfilePicture = () => {
               Edit Profile
             </button>
           </div>
-        </div>
-      </div>
-
-      <div className="profile-stats">
-        <div className="task-created-container">
-          <FontAwesomeIcon icon={faList} />
-          <h5 className="stat">
-            {todosPending ? (
-              <CircleLoader size={"15px"} color="gray" />
-            ) : (
-              todos?.map((todo) => {
-                return todo.id;
-              }).length
-            )}{" "}
-            Tugas Dibuat
-          </h5>
-        </div>
-        <p>|</p>
-        <div className="task-completed-container">
-          <FontAwesomeIcon icon={faCheckCircle} />
-          <h5 className="stat">
-            {todosPending ? (
-              <CircleLoader size={"15px"} color="gray" />
-            ) : (
-              todos?.filter((todo) => {
-                return todo.completed;
-              }).length
-            )}{" "}
-            Tugas Selesai
-          </h5>
-        </div>
-        <p>|</p>
-        <div className="task-uncompleted-container">
-          <FontAwesomeIcon icon={faXmarkCircle} />
-          <h5 className="stat">
-            {todosPending ? (
-              <CircleLoader size={"15px"} color="gray" />
-            ) : (
-              todos?.filter((todo) => {
-                return !todo.completed;
-              }).length
-            )}{" "}
-            Tugas Belum Selesai
-          </h5>
-        </div>
+        </div> */}
       </div>
 
       <div
@@ -203,4 +220,4 @@ const ProfilePicture = () => {
   );
 };
 
-export default ProfilePicture;
+export default ProfileContent;
