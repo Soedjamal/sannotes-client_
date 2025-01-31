@@ -193,7 +193,11 @@ const ProfileContent = () => {
         </div>
         <div className="profile-option">
           <button className="follow-btn">Follow Me 🚀</button>
-          <FontAwesomeIcon className="profile-settings-btn" icon={faGear} />
+          <FontAwesomeIcon
+            className="profile-settings-btn"
+            onClick={() => setMenu(!menu)}
+            icon={faGear}
+          />
         </div>
         {/* <div className="profile-data">
           <div className="profile-details-container">
