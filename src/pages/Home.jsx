@@ -37,13 +37,10 @@ const Home = () => {
       });
       if (res.status === 200) {
         setUser(res.data);
-        console.log(res.data);
         setIsAuth(true);
         setLoad(false);
       }
-      console.log(res);
     } catch (err) {
-      console.log(err.response);
       setIsAuth(false);
     }
   };
@@ -83,6 +80,7 @@ const Home = () => {
           {/* <b>SanNotes</b>, Ayo{" "} */}
           {/* {isAuthenticated ? "lihat tugasmu." : "mulai sekarang."} */}
         </div>
+
         <div className="start-option">
           <div className="cta-head">
             <h2>Mulai tugas pertamamu</h2>

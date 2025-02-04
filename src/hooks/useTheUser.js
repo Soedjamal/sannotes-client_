@@ -14,7 +14,6 @@ export const useTheUser = () => {
       setUser(response.data);
       return response.data;
     } catch (err) {
-      console.log(err);
       return null;
     }
   };
@@ -30,7 +29,6 @@ export const useTheUser = () => {
     const res = await axiosJWT.get("/user");
 
     setUsername(res.data.username);
-    console.log(res.data.username);
   };
 
   useEffect(() => {

@@ -9,30 +9,31 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import "./navbar.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLogout } from "../../hooks/useAuth";
 import { useAuthContext } from "../../context/AuthContext";
 
 const Menu = () => {
   const { isAuthenticated } = useAuthContext();
   const { logout } = useLogout();
+  const navigate = useNavigate();
 
   return (
     <nav className="menu-container">
       <ul className="menu-list-container">
-        <li className="menu-list">
+        <li className="menu-list" onClick={() => navigate("/todos")}>
           <FontAwesomeIcon className="menu-link-title" icon={faCalendar} />
           <Link className="menu-link" to="/todos">
             Todos
           </Link>
         </li>
-        <li className="menu-list">
+        <li className="menu-list" onClick={() => navigate("/profile")}>
           <FontAwesomeIcon className="menu-link-title" icon={faUser} />
           <Link className="menu-link" to="/profile">
             Profile
           </Link>
         </li>
-        <li className="menu-list">
+        <li className="menu-list" onClick={() => navigate("/")}>
           <FontAwesomeIcon className="menu-link-title" icon={faHouse} />
           <Link className="menu-link" to="/">
             Home
